@@ -1,0 +1,33 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Temporary files
+*.log
+.DS_Store
+
+# Backups
+*_backup.py
+*.bak
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dataset redistribution pending review
+train_data.csv
+
+retrieval_data.csv
+app_before_minimal_data.py
