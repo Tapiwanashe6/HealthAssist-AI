@@ -1,3 +1,13 @@
+---
+title: HealthAssist AI
+emoji: 🩺
+colorFrom: blue
+colorTo: green
+sdk: gradio
+app_file: app.py
+pinned: false
+---
+
 # HealthAssist AI
 
 HealthAssist AI is an educational medical question-answering prototype developed as a machine learning capstone project.

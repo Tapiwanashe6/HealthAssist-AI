@@ -26,9 +26,27 @@ healthassist.train_conditions = joblib.load(
 healthassist.train_intents = joblib.load(
     os.path.join(BASE_DIR, "train_intents.joblib")
 )
-healthassist.train_df = pd.read_csv(
-    os.path.join(BASE_DIR, "retrieval_data.csv")
-)
+# Reconstruct the retrieval dataset if it is not available.
+dataset_path = os.path.join(BASE_DIR, "retrieval_data.csv")
+
+if not os.path.isfile(dataset_path):
+    import subprocess
+    import sys
+
+    print("Retrieval dataset missing. Reconstructing from MedQuAD...")
+
+    subprocess.run(
+        [sys.executable, os.path.join(BASE_DIR, "reconstruct_dataset.py")],
+        cwd=BASE_DIR,
+        check=True
+    )
+
+if not os.path.isfile(dataset_path):
+    raise FileNotFoundError(
+        "Dataset reconstruction did not create retrieval_data.csv"
+    )
+
+healthassist.train_df = pd.read_csv(dataset_path)
 
 healthassist.malaria_indices = [
     i for i, (condition, intent) in enumerate(
